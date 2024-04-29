@@ -1,0 +1,106 @@
+###Service document
+http://localhost:4004/odata/v4/CatalogService/
+ 
+###Service metadata documents - properties of each entity
+http://localhost:4004/odata/v4/CatalogService/$metadata
+ 
+###Get all employees data
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+ 
+###Get Single Employee - by its ID
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C198E7FB
+ 
+###Get the total count of employees
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+ 
+###Get the employee data with less volume
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$select=nameFirst,phoneNumber,loginName,email
+
+###Pagination
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&$skip=2
+ 
+###Filtering
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'My Bank of San Francisco'
+ 
+###Pattern search
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'S')
+ 
+###Send new data to insert POST call
+
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+ {
+    "nameFirst": "Sachin",
+      "nameMiddle": null,
+      "nameLast": "Tendulkar",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": "+1 224 374 524",
+      "email": "sachin@ey.co.in",
+      "loginName": "SACHIN",
+      "Currency_code": "USD",
+      "salaryAmount": 55549,
+      "accountNumber": "111222333",
+      "bankId": "4546546",
+      "bankName": "HDFC Bank"
+}
+
+ 
+###GEt the data of employee
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/4434fa1d-6c72-4151-9e86-95bf724f123c
+ 
+###Update data - PATCH
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/6e493434-1918-4102-810a-6d0c7f5cf1a7
+Content-Type: application/json
+ 
+{
+    "salaryAmount": 10000000
+}
+ 
+###Remove data from DB
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/4434fa1d-6c72-4151-9e86-95bf724f123c
+ 
+###Get purchase order data
+
+http://localhost:4004/odata/v4/CatalogService/POs
+
+###Get one PO data
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2C052
+ 
+###Get PO and its items
+http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2C052?$expand=Items
+
+###Testing action
+POST http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC2C052/boost
+Content-Type: application/json
+ 
+{}
+
+###Get Largest PO
+http://localhost:4004/odata/v4/CatalogService/getLargestOrder()
+
+### A new readonly entity
+http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
+ 
+###Send new data to insert POST call
+POST http://localhost:4004/odata/v4/MyService/ReadEmployeeSrv
+Content-Type: application/json
+ 
+{
+    "nameFirst": "Sachin",
+      "nameMiddle": null,
+      "nameLast": "Tendulkar",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "E",
+      "phoneNumber": "+1 224 374 524",
+      "email": "sachin@ey.co.in",
+      "loginName": "SCHIN",
+      "Currency_code": "USD",
+      "salaryAmount": 55549,
+      "accountNumber": "111222333",
+      "bankId": "4546546",
+      "bankName": "HDFC Bank"
+}
